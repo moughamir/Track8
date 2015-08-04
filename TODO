@@ -1,0 +1,4 @@
+# Things todo
+
+[x] Use res.sendStatus(status) instead of res.send(status) in server.js.
+[ ] Fix app.min.js

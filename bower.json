@@ -1,0 +1,30 @@
+{
+  "name": "track8",
+  "version": "0.0.1",
+  "authors": [
+    "Mohamed Moughamir <moughamir@gmail.com>"
+  ],
+  "description": "Movies, TV shows, and Anime Tracker App.",
+  "keywords": [
+    "movies",
+    "tv",
+    "shows",
+    "anime",
+    "tracker"
+  ],
+  "license": "GPL",
+  "homepage": "track8.github.com",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap-sass": "~3.3.5",
+    "angularjs": "~1.4.3",
+    "angular-strap": "~2.3.1",
+    "moment": "~2.10.6"
+  }
+}
