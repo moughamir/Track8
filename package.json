@@ -1,40 +1,45 @@
 {
   "name": "track8",
-  "version": "0.0.0",
-  "private": true,
-  "scripts": {
-    "start": "node ./bin/www"
-  },
+  "version": "1.0.0",
+  "description": "Workspaces are fantastic for organizing your work. This new workspace, which lives inside the 'Workspaces' folder of your home directory, is a place where you can store all relevant and related files to a particular project. For example, if you are working on multiple projects, its nice to have them separated as follows: -|home dir    -|Workspaces     -| Project 1     -| Project 2     -| Project 3",
+  "main": "server.js",
   "dependencies": {
-    "agenda": "^0.6.28",
-    "async": "^1.4.0",
-    "bcryptjs": "^2.2.0",
-    "body-parser": "~1.13.2",
-    "compression": "^1.5.2",
-    "cookie-parser": "~1.3.5",
-    "debug": "~2.2.0",
-    "express": "~4.13.1",
-    "express-session": "^1.11.3",
-    "jade": "~1.11.0",
-    "lodash": "^3.10.0",
-    "mongoose": "^4.1.0",
-    "morgan": "~1.6.1",
-    "node-cache": "^3.0.0",
-    "nodemailer": "^1.4.0",
-    "passport": "^0.2.2",
-    "passport-local": "^1.0.0",
-    "request": "^2.60.0",
-    "serve-favicon": "~2.3.0",
-    "sugar": "^1.4.1",
-    "xml2js": "^0.4.9"
+    "agenda": "^1.0.3",
+    "async": "^2.6.0",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.18.2",
+    "compression": "^1.7.1",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.16.2",
+    "express-session": "^1.15.6",
+    "gulp": "^3.9.1",
+    "lodash": "^4.17.4",
+    "mongoose": "^5.0.0",
+    "morgan": "^1.9.0",
+    "node-cache": "^4.1.1",
+    "nodemailer": "^4.4.1",
+    "pug": "^2.0.0-rc.4",
+    "request": "^2.83.0",
+    "serve-favicon": "^2.4.5",
+    "xml2js": "^0.4.19"
   },
   "devDependencies": {
-    "gulp": "^3.9.0",
-    "gulp-angular-templatecache": "^1.7.0",
-    "gulp-concat": "^2.6.0",
-    "gulp-csso": "^1.0.0",
-    "gulp-plumber": "^1.0.1",
-    "gulp-sass": "^2.0.4",
-    "gulp-uglify": "^1.2.0"
-  }
+    "gulp": "^3.9.1",
+    "gulp-sass": "^3.1.0",
+    "gulp-uglify": "^3.0.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/moughamir/Track8.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/moughamir/Track8/issues"
+  },
+  "homepage": "https://github.com/moughamir/Track8#readme"
 }
