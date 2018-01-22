@@ -3,17 +3,14 @@ let db = require('mongoose'),
   Schema = db.Schema;
 //
 let showSchema = new Schema({
-  _id: Number,
+  // _id: Number,
+  imdbID: String,
   name: String,
-  airsDayOfWeek: String,
-  airsTime: String,
   firstAired: Date,
   genre: [String],
-  network: String,
   overview: String,
-  rating: Number,
-  ratingCount: Number,
-  status: String,
+  rating: String,
+  ratingCount: String,
   poster: String,
   subscribers: [{
     type: db.Schema.Types.ObjectId,

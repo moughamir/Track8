@@ -15,6 +15,7 @@ const express = require('express'),
   dbConnect = "mongodb://localhost/track8";
 // models
 let Comment = require('./src/model/comments');
+let Show = require('./src/model/shows');
 // API conf
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -87,6 +88,33 @@ router.route('/comments/:comment_id')
         res.send(err);
       }
       res.json({ message: 'Comment has been deleted' });
+    });
+  });
+
+// Shows API
+router.route('/shows').get(function(req, res) {
+    Show.find(function(err, shows) {
+      if (err) {
+        res.sed(err);
+      }
+      res.json(shows);
+    });
+  })
+  .post(function(req, res) {
+    var show = new Show();
+    show.name = req.body.name;
+    show.firstAired = req.body.firstAired;
+    show.genre = req.body.genre;
+    show.overview = req.body.overview;
+    show.rating = req.body.rating;
+    show.ratingCount = req.body.ratingCount;
+    show.poster = req.body.poster;
+    show.imdbID = req.body.imdbID;
+    show.save(function(err) {
+      if (err) {
+        res.send(err);
+      }
+      res.json({ message: 'Show successfully added.' });
     });
   });
 // Call /api
