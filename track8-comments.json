@@ -1,0 +1,5 @@
+{ "_id" : { "$oid" : "5a65c4b6aaafed119bd4152d" }, "author" : "Mr. Nobody", "text" : "Every path is the right path. Everything could've been anything else.﻿ And it would have just as much meaning.", "__v" : 0 }
+{ "_id" : { "$oid" : "5a65c4e7aaafed119bd4152f" }, "author" : "Mr. Nobody", "text" : "Choices ... We cannot go back. That’s why it’s hard to choose. You have to make the right choice. As long as you don’t choose, everything remains possible.", "__v" : 0 }
+{ "_id" : { "$oid" : "5a65c5518f017b11ad884743" }, "author" : "Charles Dickens", "text" : "if the world go wrong, it was, in some off-hand manner, never meant to go right.", "__v" : 0 }
+{ "_id" : { "$oid" : "5a65cad98925d1127b052ecc" }, "author" : "Mr. Robot", "text" : "A bug is never just a mistake. It represent something bigger, an error of thinking. That makes you who you are.", "__v" : 0 }
+{ "_id" : { "$oid" : "5a65cbd4e6734212bdfb56a6" }, "author" : "Elliot Alderson", "text" : "We're all living in each other's paranoia", "__v" : 0 }
