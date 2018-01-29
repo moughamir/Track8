@@ -8,15 +8,23 @@ const express = require('express'),
   bcrypt = require('bcryptjs'),
   async = require('async'),
   request = require('request'),
+  rp = require('request-promise'),
   xml2js = require('xml2js'),
   _ = require('lodash'),
   session = require('express-session'),
   passport = require('passport'),
   LocalStrategy = require('passport-local').Strategy,
-  agenda = require('agenda')({ db: { address: 'mongodb: //localhost/track8-agenda' } }),
-  sugar = require('sugar'),
-  nodemailer = require('nodemailer'),
+  //Agenda = require('agenda'),
+  //agenda = new Agenda({ db: { address: 'mongodb://localhost/track8-agenda' } }),
+  //sugar = require('sugar'),
+  //nodemailer = require('nodemailer'),
   compress = require('compression');
+var tvDbApi = {
+    "apikey": "9C3D9796083239FA",
+    "userkey": "C4B70EEBF5EA0D40",
+    "username": "omnizya"
+  },
+  token = '';
 
 var showSchema = new mongoose.Schema({
   _id: Number,
@@ -134,30 +142,41 @@ app.use(parallel([
     next();
   }
 ]));
-/* old
-app.use(favicon(path.join(__dirname, 'public', 'favicon.png')));
-app.use(compress());
-app.use(logger('dev'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({
-  extended: true
-}));
-app.use(cookieParser());
-app.use(session({secret: 'FU1CypIGDdASxJgR6XqShd8ocXzC7i1M', 
-                 saveUninitialized: true,
-                 resave: true}));
-app.use(passport.initialize());
-app.use(passport.session());
-app.use(express.static(path.join(__dirname, 'public'), { maxAge: 86400000 }));
-app.use(function(req, res, next) {
-  if (req.user) {
-    res.cookie('user', JSON.stringify(req.user));
-  }
-  next();
-});
-*/
 
 
+var options = {
+  method: 'POST',
+  uri: 'https://api.thetvdb.com/login',
+  body: {
+    apikey: '9C3D9796083239FA',
+    userkey: 'C4B70EEBF5EA0D40',
+    username: 'omnizya'
+  },
+  headers: {
+    'content-type': 'application/json'
+  },
+  json: true
+};
+
+
+var tvdb = function() {
+  rp(options)
+    .then(function(body) {
+      token = body.token;
+    })
+    .catch(function(err) {
+      console.log('Request Error: ' + err);
+    });
+};
+//setTimeout(function() {
+//tvdb(tvDbApi.apikey, tvDbApi.userkey, tvDbApi.username);
+//console.log(token);
+//console.log("Hello")
+//}, 800)
+tvdb();
+setTimeout(function() {
+  console.log('TVdb token : ' + token);
+}, 800);
 //shows api : using theTvDb API
 app.get('/api/shows', function(req, res, next) {
   var query = Show.find();
@@ -192,67 +211,79 @@ app.get('*', function(req, res) {
   res.redirect('/#' + req.originalUrl);
 });
 
+
 // tvDb
 
 app.post('/api/shows', function(req, res, next) {
-  var apiKey = '5A2E16F225DCFE0A',
-    parser = xml2js.Parser({
-      explicitArray: false,
-      normalizeTags: true
-    });
+
   var seriesName = req.body.showName
     .toLowerCase()
     .replace(/ /g, '_')
     .replace(/[^\w-]+/g, '');
+  //https://api.thetvdb.com/search/series?name=Sherlock
+  var getOptions = {
+    method: 'GET',
+    url: 'https://api.thetvdb.com/search/series',
+    qs: { name: seriesName },
+    headers: {
+      Authorization: 'Bearer ' + token
+    }
+  };
 
   async.waterfall([
     function(callback) {
-      request.get('http://thetvdb.com/api/GetSeries.php?seriesname=' + seriesName, function(error, response, body) {
-        if (error) return next(error);
-        parser.parseString(body, function(err, result) {
-          if (!result.data.series) {
-            return res.sendStatus(404, { message: req.body.showName + ' was not found.' });
-          }
-          var seriesId = result.data.series.seriesid || result.data.series[0].seriesid;
-          callback(err, seriesId);
+      rp(getOptions)
+        .then(function(body) {
+          return body;
+        })
+        .catch(function(err) {
+          console.log('search error: ' + err);
         });
-      });
+      // request.get('https://api.thetvdb.com/search/series?' + seriesName, function(error, response, body) {
+      //   if (error) return next(error);
+      //   parser.parseString(body, function(err, result) {
+      //     if (!result.data.series) {
+      //       return res.sendStatus(404, { message: req.body.showName + ' was not found.' });
+      //     }
+      //     var seriesId = result.data.series.seriesid || result.data.series[0].seriesid;
+      //     callback(err, seriesId);
+      //   });
+      // });
     },
-    function(seriesId, callback) {
-      request.get('http://thetvdb.com/api/' + apiKey + '/series/' + seriesId + '/all/en.xml', function(error, response, body) {
-        if (error) return next(error);
-        parser.parseString(body, function(err, result) {
-          var series = result.data.series;
-          var episodes = result.data.episode;
-          var show = new Show({
-            _id: series.id,
-            name: series.seriesname,
-            airsDayOfWeek: series.airs_dayofweek,
-            airsTime: series.airs_time,
-            firstAired: series.firstaired,
-            genre: series.genre.split('|').filter(Boolean),
-            network: series.network,
-            overview: series.overview,
-            rating: series.rating,
-            ratingCount: series.ratingcount,
-            runtime: series.runtime,
-            status: series.status,
-            poster: series.poster,
-            episodes: []
-          });
-          _.each(episodes, function(episode) {
-            show.episodes.push({
-              season: episode.seasonnumber,
-              episodeNumber: episode.episodenumber,
-              episodeName: episode.episodename,
-              firstAired: episode.firstaired,
-              overview: episode.overview
-            });
-          });
-          callback(err, show);
-        });
-      });
-    },
+    // function(seriesId, callback) {  //   request.get('http://thetvdb.com/api/' + apiKey + '/series/' + seriesId + '/all/en.xml', function(error, response, body) {
+    //     if (error) return next(error);
+    //     parser.parseString(body, function(err, result) {
+    //       var series = result.data.series;
+    //       var episodes = result.data.episode;
+    //       var show = new Show({
+    //         _id: series.id,
+    //         name: series.seriesname,
+    //         airsDayOfWeek: series.airs_dayofweek,
+    //         airsTime: series.airs_time,
+    //         firstAired: series.firstaired,
+    //         genre: series.genre.split('|').filter(Boolean),
+    //         network: series.network,
+    //         overview: series.overview,
+    //         rating: series.rating,
+    //         ratingCount: series.ratingcount,
+    //         runtime: series.runtime,
+    //         status: series.status,
+    //         poster: series.poster,
+    //         episodes: []
+    //       });
+    //       _.each(episodes, function(episode) {
+    //         show.episodes.push({
+    //           season: episode.seasonnumber,
+    //           episodeNumber: episode.episodenumber,
+    //           episodeName: episode.episodename,
+    //           firstAired: episode.firstaired,
+    //           overview: episode.overview
+    //         });
+    //       });
+    //       callback(err, show);
+    //     });
+    //   });
+    // },
     function(show, callback) {
       var url = 'http://thetvdb.com/banners/' + show.poster;
       request({ url: url, encoding: null }, function(error, response, body) {
@@ -289,10 +320,9 @@ app.post('/api/signup', function(req, res, next) {
     res.sendStatus(200);
   });
 });
-/app.post('/api / login ', passport.authenticate('
-local '), function(req, res) { /
-res.cookie('user', JSON.stringify(req.user));
-/ res.sendStatus(req.user); /
+app.post('/api/login ', passport.authenticate('local'), function(req, res) {
+  res.cookie('user', JSON.stringify(req.user));
+  res.sendStatus(req.user);
 });
 app.get('/api/logout', function(req, res, next) {
   req.logout();
@@ -339,7 +369,7 @@ app.listen(app.get('port'), function() {
 
 
 //agenda
-
+/**
 agenda.define('send email alert', function(job, done) {
   Show.findOne({ name: job.attrs.data }).populate('subscribers').exec(function(err, show) {
     var emails = show.subscribers.map(function(user) {
@@ -383,3 +413,4 @@ agenda.on('start', function(job) {
 agenda.on('complete', function(job) {
   console.log("Job %s finished", job.attrs.name);
 });
+**/

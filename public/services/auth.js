@@ -65,4 +65,5 @@ angular.module('trackApp')
           });
         }
       };
-    }]);
+    }
+  ]);
