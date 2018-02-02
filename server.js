@@ -12,7 +12,7 @@ const express = require('express'),
   //port = process.env.PORT || 8081,
   port = 8081,
   // db config
-  dbConnect = "mongodb://localhost/track8";
+  dbConnect = "mongodb://localhost:8082/track8";
 // models
 let Comment = require('./src/model/comments');
 let Show = require('./src/model/shows');
@@ -23,7 +23,7 @@ app.use(bodyParser.json());
 app.use(function(req, res, next) {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Credentials', 'true');
-  res.setHeader('Access-Control-Allow-Methods', 'GET,HEAD,OPTIONS,POST,DELETE');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, HEAD, OPTIONS, POST, DELETE');
 
   res.setHeader('Access-Control-Allow-Headers', 'Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers');
   res.setHeader('Cache-Control', 'no-cache');

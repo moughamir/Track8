@@ -52,7 +52,7 @@ class Comment extends Component {
   }
   //
   handleAuthorChange(e) {
-    this.setState({ text: e.target.value });
+    this.setState({ author: e.target.value });
   }
   //
   rawMarkup() {

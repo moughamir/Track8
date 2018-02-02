@@ -1,6 +1,6 @@
 {
   "name": "track8",
-  "version": "0.1.0",
+  "version": "1.2.0",
   "private": true,
   "dependencies": {
     "axios": "^0.17.1",
@@ -9,6 +9,7 @@
     "foreman": "^2.0.0",
     "markd": "^1.2.0",
     "marked": "^0.3.12",
+    "mdbreact": "^4.1.0",
     "mongoose": "^5.0.1",
     "nodemon": "^1.14.11",
     "react": "^16.2.0",
@@ -21,5 +22,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
-  }
+  },
+  "main": "server.js",
+  "repository": "git@github.com:moughamir/Track8.git",
+  "author": "Mohamed Moughamir <moughamir@gmail.com>",
+  "license": "GPL"
 }
