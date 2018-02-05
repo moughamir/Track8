@@ -6,6 +6,7 @@
     "axios": "^0.17.1",
     "body-parser": "^1.18.2",
     "express": "^4.16.2",
+    "cors": "^2.8.4",
     "foreman": "^2.0.0",
     "markd": "^1.2.0",
     "marked": "^0.3.12",
@@ -26,5 +27,5 @@
   "main": "server.js",
   "repository": "git@github.com:moughamir/Track8.git",
   "author": "Mohamed Moughamir <moughamir@gmail.com>",
-  "license": "GPL"
+  "license": "GPL",
 }
