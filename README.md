@@ -1,4 +1,4 @@
-# Awesome, you've just made a new workspace!
+# Track8
 Workspaces are fantastic for organizing your work. This new workspace, which lives inside the 'Workspaces' folder of your home
 directory, is a place where you can store all relevant and related files to a particular project. For example, if you
 are working on multiple projects, its nice to have them separated as follows:
@@ -16,3 +16,5 @@ As you move back and forth between your workspaces, Koding will remember everyth
 like IDE settings, files open, Terminals open, etc.
 
 Enjoy and Happy Koding!
+
+<a href="https://koding.com/"> <img src="https://koding-cdn.s3.amazonaws.com/badges/made-with-koding/v1/koding_badge_ReadmeDark.png" srcset="https://koding-cdn.s3.amazonaws.com/badges/made-with-koding/v1/koding_badge_ReadmeDark.png 1x, https://koding-cdn.s3.amazonaws.com/badges/made-with-koding/v1/koding_badge_ReadmeDark@2x.png 2x" alt="Made with Koding" /> </a> 
