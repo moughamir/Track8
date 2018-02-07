@@ -5,16 +5,19 @@
   "dependencies": {
     "axios": "^0.17.1",
     "body-parser": "^1.18.2",
-    "express": "^4.16.2",
+    "bootstrap": "4.0.0-alpha.6",
     "cors": "^2.8.4",
+    "express": "^4.16.2",
     "foreman": "^2.0.0",
     "markd": "^1.2.0",
     "marked": "^0.3.12",
     "mdbreact": "^4.1.0",
     "mongoose": "^5.0.1",
     "nodemon": "^1.14.11",
+    "prop-types": "^15.6.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
+    "react-router-dom": "^4.2.2",
     "react-scripts": "1.1.0"
   },
   "scripts": {
@@ -28,4 +31,7 @@
   "repository": "git@github.com:moughamir/Track8.git",
   "author": "Mohamed Moughamir <moughamir@gmail.com>",
   "license": "GPL",
+  "devDependencies": {
+    "mdbootstrap": "^4.4.4"
+  }
 }

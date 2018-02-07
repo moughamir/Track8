@@ -1,11 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import CommentBox from './components/commentBox/CommentBox';
+//import CommentBox from './components/commentBox/CommentBox';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'mdbootstrap/css/mdb.min.css';
+//import './index.css';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import App from './App';
+//import registerServiceWorker from './registerServiceWorker';
 
 ReactDOM.render(
- <CommentBox
-  url="//track8-omnizya.c9users.io:8081/api/comments"
-  pollInterval={2000}
- />,
- document.getElementById('root')
+  <App />,
+  document.getElementById('track8App')
 );
+
+//registerServiceWorker();
