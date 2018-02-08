@@ -18,20 +18,26 @@
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-router-dom": "^4.2.2",
-    "react-scripts": "1.1.0"
+    "react-scripts": "1.1.0",
+    "util-deprecate": "^1.0.2"
   },
   "scripts": {
     "start": "react-scripts start",
     "start-dev": "nf start -p 8080",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy-gh": "gh-pages -d build",
+    "deploy-fb": "firebase deploy"
   },
   "main": "server.js",
   "repository": "git@github.com:moughamir/Track8.git",
+  "homepage": "https://moughamir.github.io/Track8",
   "author": "Mohamed Moughamir <moughamir@gmail.com>",
   "license": "GPL",
   "devDependencies": {
+    "gh-pages": "^1.1.0",
     "mdbootstrap": "^4.4.4"
   }
 }
