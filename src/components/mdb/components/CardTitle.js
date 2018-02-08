@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-class NavbarBrand extends Component {
+class CardTitle extends Component {
 
   render() {
  
@@ -13,7 +13,7 @@ class NavbarBrand extends Component {
     } = this.props;
 
     const classes = classNames(
-      'navbar-brand',
+      'card-title',
       className
     );
 
@@ -23,13 +23,13 @@ class NavbarBrand extends Component {
   }
 }
 
-NavbarBrand.propTypes = {
+CardTitle.propTypes = {
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
   className: PropTypes.string
 };
 
-NavbarBrand.defaultProps = {
-  tag: 'a'
+CardTitle.defaultProps = {
+  tag: 'h4'
 };
 
-export default NavbarBrand;
+export default CardTitle;

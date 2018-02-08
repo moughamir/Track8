@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
@@ -7,8 +8,7 @@ const scrollingNavbarOffset = 50;
 const getExpandClass = (expand) => {
   if (expand === false) {
     return false;
-  }
-  else if (expand === true || expand === 'xs') {
+  } else if (expand === true || expand === 'xs') {
     return 'navbar-expand';
   }
 
@@ -19,27 +19,26 @@ class Navbar extends Component {
 
   constructor(props, refs) {
     super(props, refs);
-    this.state = { isCollapsed: false };
+    this.state = {isCollapsed: false};
     this.refs = {};
   }
 
   handleScroll() {
-    if (window.pageYOffset > scrollingNavbarOffset) {
-      this.setState({ isCollapsed: true });
-    }
-    else {
-      this.setState({ isCollapsed: false });
+    if(window.pageYOffset > scrollingNavbarOffset) {
+      this.setState({isCollapsed: true});
+    } else {
+      this.setState({isCollapsed: false});
     }
   }
 
   componentDidMount() {
-    if (this.props.scrolling) {
+    if(this.props.scrolling) {
       window.addEventListener('scroll', this.handleScroll.bind(this));
     }
   }
 
   componentWillUnmount() {
-    if (this.props.scrolling) {
+    if(this.props.scrolling) {
       window.removeEventListener('scroll', this.handleScroll.bind(this));
     }
   }

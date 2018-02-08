@@ -2,34 +2,38 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-class NavbarBrand extends Component {
+class NavItem extends Component {
 
   render() {
  
     const {
+      children,
       className,
       tag: Tag,
       ...attributes
     } = this.props;
 
     const classes = classNames(
-      'navbar-brand',
-      className
+      'nav-item',
+      className,
     );
 
     return (
-      <Tag {...attributes} className={classes} />
+      <Tag {...attributes} className={classes}>
+        {children}
+      </Tag>
     );
   }
 }
 
-NavbarBrand.propTypes = {
+NavItem.propTypes = {
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
-  className: PropTypes.string
+  className: PropTypes.string,
+  children: PropTypes.node
 };
 
-NavbarBrand.defaultProps = {
-  tag: 'a'
+NavItem.defaultProps = {
+  tag: 'li'
 };
 
-export default NavbarBrand;
+export default NavItem;

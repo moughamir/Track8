@@ -1,19 +1,20 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-
-class NavbarBrand extends Component {
+class EdgeHeader extends Component {
 
   render() {
- 
+
     const {
+      color,
       className,
       tag: Tag,
       ...attributes
     } = this.props;
 
     const classes = classNames(
-      'navbar-brand',
+      'edge-header',
+      color,
       className
     );
 
@@ -23,13 +24,15 @@ class NavbarBrand extends Component {
   }
 }
 
-NavbarBrand.propTypes = {
+EdgeHeader.propTypes = {
+  color: PropTypes.string,
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
   className: PropTypes.string
 };
 
-NavbarBrand.defaultProps = {
-  tag: 'a'
+EdgeHeader.defaultProps = {
+  color: 'deep-purple',
+  tag: 'div'
 };
 
-export default NavbarBrand;
+export default EdgeHeader;
