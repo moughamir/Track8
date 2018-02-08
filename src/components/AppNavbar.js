@@ -2,7 +2,11 @@ import React, { Component } from 'react';
 import { Navbar, NavbarBrand, NavbarNav, NavbarToggler, NavItem, Collapse, Container, Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from './mdb/mdb';
 import logo from './svgIcons/icons/005-tv-screen.svg';
 const NavLink = require('react-router-dom').NavLink;
-
+const avatarStyle = {
+  width: '35px',
+  height: '35px',
+  borderRadius: '50%',
+}
 class AppNavbar extends Component {
   constructor(props) {
     super(props);
@@ -35,9 +39,9 @@ class AppNavbar extends Component {
             <img src={logo} className='App-logo' alt='logo' height='30px' />
             <strong>NextFliks</strong>
           </NavbarBrand>
-        { !this.state.isWideEnough && <NavbarToggler onClick = { this.onClick } />}
-          <Collapse isOpen = { this.state.collapse } navbar>
-            <NavbarNav className="ml-auto">
+          {!this.state.isWideEnough && <NavbarToggler onClick ={this.onClick} />}
+          <Collapse isOpen={this.state.collapse} navbar>
+            <NavbarNav className="mr-auto" onClick={this.onClick}>
               <NavItem active>
                 <NavLink className="nav-link" to="/">Home</NavLink>
               </NavItem>
@@ -47,22 +51,23 @@ class AppNavbar extends Component {
               <NavItem>
                 <NavLink className="nav-link" to="/movies">Movies</NavLink>
               </NavItem>
-              <NavItem>
-              <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
-                <DropdownToggle nav caret>Account</DropdownToggle>
-                <DropdownMenu>
-                  <DropdownItem href="#">Action</DropdownItem>
-                  <DropdownItem href="#">Another Action</DropdownItem>
-                  <DropdownItem href="#">Something else here</DropdownItem>
-                  <DropdownItem href="#">Something else here</DropdownItem>
-                </DropdownMenu>
-              </Dropdown>
-              </NavItem>
-              <form className="form-inline">
-                <input className="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search"/>
-              </form>
             </NavbarNav>
-          </Collapse>
+            
+            <NavbarNav className='ml-auto nav-flex-icons'>
+              <NavItem>
+                <Dropdown className='avatar' isOpen={this.state.dropdownOpen} toggle={this.toggle} style={avatarStyle}>
+                  <DropdownToggle nav>
+                  <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-2.jpg" class="img-fluid rounded-circle z-depth-0" alt="avatar image"/>
+                  </DropdownToggle>
+                  <DropdownMenu>
+                    <DropdownItem href="/profile">My profile</DropdownItem>
+                    <DropdownItem href="#">Settings</DropdownItem>
+                    <DropdownItem href="/logout">Logout</DropdownItem>
+                  </DropdownMenu>
+                </Dropdown>
+              </NavItem>
+            </NavbarNav>
+            </Collapse>
         </Container>
       </Navbar>
     );

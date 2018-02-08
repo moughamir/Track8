@@ -1,17 +1,11 @@
 import React, { Component } from 'react'
-import { Footer } from './components/mdb/mdb';
+import { Container, Footer } from './components/mdb/mdb';
 import AppNavbar from './components/AppNavbar';
 import { BrowserRouter as Router } from 'react-router-dom';
 import Routes from './Routes';
 import fb from './firebase';
 const NavLink = require('react-router-dom').NavLink;
 
-const containerStyle = {
-  display: 'flex',
-  flexDirection: 'column',
-  minHeight: '100vh',
-  justifyContent: 'space-between'
-};
 
 class App extends Component {
 
@@ -28,7 +22,7 @@ class App extends Component {
       let message = { text: snapshot.val(), id: snapshot.key };
       this.setState(prevState => ({
         messages: [message].concat(prevState.messages),
-        }));
+      }));
     });
   }
 
@@ -42,32 +36,34 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <div style={containerStyle}>
+        <div>
             <AppNavbar />
             
             <main style={{marginTop: '4rem'}}>
                 <Routes />
             </main>
-            
-            <form onSubmit={this.addMessage.bind(this)}>
-              <p className='h5 text-center mb-4'>Test Firebase.</p>
-              <div className='md-form'>
-                <i className='fa fa-envelope prefix grey-text'></i>
-                <input className='form-control' type='text' ref={ el => this.inputEl = el }/>
-                <label htmlFor='defaultForm-email'>Message</label>
-              </div>
-              <div className='text-center'>
-                <input type='submit' className='btn btn-default'/>
-              </div>
-              
-              <ul className='list-group'>
-
-              { /* Render the list of messages */
-              this.state.messages.map( message => <li className='list-group-item' key={message.id}>{message.text}</li> )
-              }
-              </ul>
-            </form>
-            
+            <Container className='grey lighten-5 py-5 mt-2' fluid>
+              <Container>
+                <form onSubmit={this.addMessage.bind(this)}>
+                  <p className='h5 text-center mb-4'>Test Firebase.</p>
+                  <div className='md-form'>
+                    <i className='fa fa-envelope prefix grey-text'></i>
+                    <input className='form-control' type='text' ref={ el => this.inputEl = el }/>
+                    <label htmlFor='defaultForm-email'>Message</label>
+                  </div>
+                  <div className='text-center'>
+                    <input type='submit' className='btn btn-default'/>
+                  </div>
+                  
+                  <ul className='list-group mt-2 py-1'>
+    
+                  { /* Render the list of messages */
+                  this.state.messages.map( message => <li className='list-group-item' key={message.id}>{message.text}</li> )
+                  }
+                  </ul>
+                </form>
+              </Container>
+            </Container>
           <Footer color='indigo'>
             <p className="footer-copyright mb-0">&copy; {(new Date().getFullYear())} Copyright: <a href="https://www.nextfliks.com"> NextFliks </a></p>
           </Footer>
