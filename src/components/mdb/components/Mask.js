@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-class View extends React.Component {
+class Mask extends React.Component {
 
   render() {
     const {
@@ -13,24 +13,24 @@ class View extends React.Component {
     } = this.props;
 
     const classes = classNames(
-      'view',
+      'mask',
       className
     );
     return (
-      <Tag {...attributes} className={classes} >{this.props.children}</Tag>
+      <tag {...attributes} className={classes} >{this.props.children}</tag>
 
     );
   }
 }
 
-View.defaultProps = {
+Mask.defaultProps = {
   tag: 'div'
 };
 
-View.propTypes = {
+Mask.propTypes = {
+  tag: PropTypes.string,
   children: PropTypes.node,
-  className: PropTypes.string,
-  tag: PropTypes.string
+  className: PropTypes.string
 };
 
-export default View;
+export default Mask;

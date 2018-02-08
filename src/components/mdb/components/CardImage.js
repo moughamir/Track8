@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+//import classNames from 'classnames';
 import Waves from './Waves';
 
 
@@ -12,7 +12,7 @@ class CardImage extends Component {
     };
   }
 
-  handleClick(e){
+  handleClick(e) {
     // Get Cursor Position
     let cursorPos = {
       top: e.clientY,
@@ -23,7 +23,7 @@ class CardImage extends Component {
   }
 
   render() {
- 
+
     const {
       className,
       tag: Tag,

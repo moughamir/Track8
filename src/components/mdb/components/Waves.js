@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 require('./Waves.css');
 
-class Waves extends Component {
+class Waves extends React.Component {
 
   constructor() {
     super();
@@ -16,7 +16,7 @@ class Waves extends Component {
     };
   }
 
-  render() {
+  render () {
     return (
       <div className={'Ripple ' + (this.props.outline || this.props.flat ? 'Ripple-outline ' : '') + (this.state.animate ? 'is-reppling' : '')} ref="ripple" style={{
         top: this.state.top+'px',
@@ -28,7 +28,7 @@ class Waves extends Component {
   }
 
 
-  reppling(cursorPos) {
+  reppling(cursorPos){
 
     // Get the element
     let $ripple = this.refs.ripple;
@@ -41,7 +41,7 @@ class Waves extends Component {
     let buttonHeight = $button.offsetHeight;
 
     // Make a Square Ripple
-    let rippleWidthShouldBe = Math.max(buttonHeight, buttonWidth);
+    let rippleWidthShouldBe = Math.max(buttonHeight,buttonWidth);
 
     // Make Ripple Position to be center
     let centerize = rippleWidthShouldBe / 2;
@@ -59,9 +59,9 @@ class Waves extends Component {
     let cursorPos = nextProps.cursorPos;
 
     // Prevent Component duplicates do ripple effect at the same time
-    if (cursorPos.time !== this.props.cursorPos.time) {
+    if(cursorPos.time !== this.props.cursorPos.time){
       // If Has Animated, set state to "false" First
-      if (this.state.animate) {
+      if(this.state.animate){
         this.setState({ animate: false }, () => {
           this.reppling(cursorPos);
         });

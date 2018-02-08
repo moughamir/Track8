@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+
 class EdgeHeader extends Component {
 
   render() {
-
+ 
     const {
       color,
       className,

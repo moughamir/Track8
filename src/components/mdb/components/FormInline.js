@@ -2,35 +2,29 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-class View extends React.Component {
+class FormInline extends React.Component {
 
   render() {
     const {
       className,
       children,
-      tag: Tag,
       ...attributes
     } = this.props;
 
     const classes = classNames(
-      'view',
+      'form-inline',
       className
     );
     return (
-      <Tag {...attributes} className={classes} >{this.props.children}</Tag>
+      <form {...attributes} className={classes} >{this.props.children}</form>
 
     );
   }
 }
 
-View.defaultProps = {
-  tag: 'div'
-};
-
-View.propTypes = {
+FormInline.propTypes = {
   children: PropTypes.node,
-  className: PropTypes.string,
-  tag: PropTypes.string
+  className: PropTypes.string
 };
 
-export default View;
+export default FormInline;

@@ -2,12 +2,11 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-class Footer extends Component {
+class ListGroup extends Component {
 
   render() {
  
     const {
-      color,
       children,
       className,
       tag: Tag,
@@ -15,8 +14,7 @@ class Footer extends Component {
     } = this.props;
 
     const classes = classNames(
-      'page-footer',
-      color ? color : '',
+      'list-group',
       className,
     );
 
@@ -28,15 +26,14 @@ class Footer extends Component {
   }
 }
 
-Footer.propTypes = {
-  color: PropTypes.string,
+ListGroup.propTypes = {
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
   className: PropTypes.string,
   children: PropTypes.node
 };
 
-Footer.defaultProps = {
-  tag: 'footer'
+ListGroup.defaultProps = {
+  tag: 'ul'
 };
 
-export default Footer;
+export default ListGroup;

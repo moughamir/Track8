@@ -2,12 +2,11 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-class Footer extends Component {
+class CarouselCaption extends Component {
 
   render() {
  
-    const {
-      color,
+    let {
       children,
       className,
       tag: Tag,
@@ -15,9 +14,8 @@ class Footer extends Component {
     } = this.props;
 
     const classes = classNames(
-      'page-footer',
-      color ? color : '',
-      className,
+      'carousel-caption',
+      className
     );
 
     return (
@@ -28,15 +26,15 @@ class Footer extends Component {
   }
 }
 
-Footer.propTypes = {
-  color: PropTypes.string,
+CarouselCaption.propTypes = {
+  active: PropTypes.string,
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
   className: PropTypes.string,
   children: PropTypes.node
 };
 
-Footer.defaultProps = {
-  tag: 'footer'
+CarouselCaption.defaultProps = {
+  tag: 'div'
 };
 
-export default Footer;
+export default CarouselCaption;

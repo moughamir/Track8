@@ -2,22 +2,23 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-class Footer extends Component {
+class NavLink extends Component {
 
   render() {
  
     const {
-      color,
       children,
       className,
+      active,
       tag: Tag,
       ...attributes
     } = this.props;
 
     const classes = classNames(
-      'page-footer',
-      color ? color : '',
-      className,
+      'nav-link',
+      attributes.disabled ? 'disabled' : '',
+      active ? 'active' : '',
+      className
     );
 
     return (
@@ -28,15 +29,16 @@ class Footer extends Component {
   }
 }
 
-Footer.propTypes = {
-  color: PropTypes.string,
-  tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
+NavLink.propTypes = {
   className: PropTypes.string,
-  children: PropTypes.node
+  disabled: PropTypes.bool,
+  active: PropTypes.bool,
+  children: PropTypes.node,
+  tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string])
 };
 
-Footer.defaultProps = {
-  tag: 'footer'
+NavLink.defaultProps = {
+  tag: 'a'
 };
 
-export default Footer;
+export default NavLink;

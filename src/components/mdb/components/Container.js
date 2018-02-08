@@ -5,7 +5,7 @@ import classNames from 'classnames';
 class Container extends Component {
 
   render() {
-
+ 
     const {
       fluid,
       className,
@@ -17,8 +17,9 @@ class Container extends Component {
       fluid ? 'container-fluid' : 'container',
       className
     );
+
     return (
-      <Tag {...attributes} className={classes}/>
+      <Tag {...attributes} className={classes} />
     );
   }
 }

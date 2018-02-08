@@ -2,22 +2,25 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-class Footer extends Component {
+class CarouselItem extends Component {
 
   render() {
  
-    const {
-      color,
+    let {
+      active,
       children,
       className,
+      itemId,
       tag: Tag,
       ...attributes
     } = this.props;
 
-    const classes = classNames(
-      'page-footer',
-      color ? color : '',
-      className,
+    itemId = parseInt(itemId);
+
+    let classes = classNames(
+      'carousel-item',
+      itemId === this.context.activeItem ? 'active' : '',
+      className
     );
 
     return (
@@ -28,15 +31,20 @@ class Footer extends Component {
   }
 }
 
-Footer.propTypes = {
-  color: PropTypes.string,
+CarouselItem.propTypes = {
+  active: PropTypes.bool,
+  itemId: PropTypes.any,
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
   className: PropTypes.string,
   children: PropTypes.node
 };
 
-Footer.defaultProps = {
-  tag: 'footer'
+CarouselItem.defaultProps = {
+  tag: 'div'
 };
 
-export default Footer;
+CarouselItem.contextTypes = {
+  activeItem: PropTypes.any
+};
+
+export default CarouselItem;

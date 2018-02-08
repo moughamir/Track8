@@ -2,12 +2,13 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-class Footer extends Component {
+class PageItem extends Component {
 
   render() {
  
     const {
-      color,
+      disabled,
+      active,
       children,
       className,
       tag: Tag,
@@ -15,8 +16,9 @@ class Footer extends Component {
     } = this.props;
 
     const classes = classNames(
-      'page-footer',
-      color ? color : '',
+      'page-item',
+      disabled ? 'disabled' : '',
+      active ? 'active' : '',
       className,
     );
 
@@ -28,15 +30,18 @@ class Footer extends Component {
   }
 }
 
-Footer.propTypes = {
-  color: PropTypes.string,
+PageItem.propTypes = {
+  disabled: PropTypes.string,
+  active: PropTypes.string,
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
   className: PropTypes.string,
   children: PropTypes.node
 };
 
-Footer.defaultProps = {
-  tag: 'footer'
+PageItem.defaultProps = {
+  disabled: false,
+  active: false,
+  tag: 'li'
 };
 
-export default Footer;
+export default PageItem;

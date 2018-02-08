@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import Waves from './Waves';
 
-class Button extends Component {
 
+class Button extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -34,6 +34,8 @@ class Button extends Component {
     }
   }
 
+
+
   render() {
     let {
       active,
@@ -52,6 +54,7 @@ class Button extends Component {
       innerRef,
       ...attributes
     } = this.props;
+
     const classes = classNames(
       floating ? 'btn-floating' : 'btn',
       flat ? 'btn-flat' : false,
@@ -62,9 +65,11 @@ class Button extends Component {
       'Ripple-parent',
       className, { active, disabled: this.props.disabled }
     );
+
     if (attributes.href && Tag === 'button') {
       Tag = 'a';
     }
+
     return (
       <Tag
         type={(Tag === 'button' && !type) ? 'button' : type}
